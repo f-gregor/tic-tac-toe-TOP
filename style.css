@@ -3,6 +3,9 @@
     margin: 0;
     font-size: 36px;
     font-family: system-ui, sans-serif;
+    --player-one-color: red;
+    --player-two-color: blue;
+    box-sizing: border-box;
 }
 
 .header {
@@ -12,7 +15,9 @@
     background-color: #eeeeee;
     box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 20%);
     padding: 20px;
+    font-weight: 700;
 }
+
 .current-score {
     display: flex;
     justify-content: center;
@@ -20,14 +25,14 @@
     gap: 40px;
 }
 
+.score {
+    font-size: 50px;
+}
+
 .flex {
     display: flex;
     align-items: center;
     gap: 30px;
-}
-
-.score {
-    font-size: 60px;
 }
 
 button {
@@ -37,6 +42,11 @@ button {
     background-color: #333333;
     font-weight: 700;
     color: white;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 0;
 }
 
 .main {
@@ -63,6 +73,10 @@ button {
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 20%);
     border-radius: 10px;
     background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
 }
 
 .tile:hover {
@@ -71,5 +85,32 @@ button {
 
 .tile:active {
     background-color: #eeeeee;
+}
+
+.player-one {
+    color: var(--player-one-color);
+    font-weight: 700;
+}
+
+.player-two {
+    color:var(--player-two-color);
+    font-weight: 700;
+}
+
+dialog {
+    position: absolute;
+    left: calc(50% - 350px);
+    top: 85%;
+    width: 700px;
+    padding: 50px;
+    border-radius: 30px;
+    border: 0;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 20%);
+}
+
+.main>dialog>form {
+    display: flex;
+    gap: 50px;
+    align-items: center;
 }
 
