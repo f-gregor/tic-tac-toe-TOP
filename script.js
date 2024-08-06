@@ -1,6 +1,6 @@
 const gameManager = (() => {
     const messageDialog = document.querySelector(".main>dialog");
-    // const settingsDialog = header.querySelector("dialog");
+    const settingsDialog = document.querySelector(".header>dialog");
 
     const displayManager = (() => {
         const header = document.querySelector(".header");
@@ -27,9 +27,16 @@ const gameManager = (() => {
 
         const updatePlayerLabel = () => {
             const span = document.querySelector("span");
-            span.classList.toggle("player-two");
-            span.classList.toggle("player-one");
+            span.classList.remove("player-two");
+            span.classList.remove("player-one");
+            span.classList.add(currentPlayer.getId());
             span.textContent = currentPlayer.getPlayerName();
+        }
+
+        const updatePlayerNames = () => {
+            header.querySelector(".player-one>.name").textContent = player1.getPlayerName();
+            header.querySelector(".player-two>.name").textContent = player2.getPlayerName();
+            document.querySelector("span").textContent = currentPlayer.getPlayerName();
         }
 
         const showEndOfRoundMessage = (roundResult) => {
@@ -43,11 +50,7 @@ const gameManager = (() => {
             messageDialog.showModal();
         }
 
-        const run = () => {
-
-        }
-
-        return {displayMove, updateScore, clearBoard, updatePlayerLabel, showEndOfRoundMessage, run};
+        return {displayMove, updateScore, clearBoard, updatePlayerLabel, showEndOfRoundMessage, updatePlayerNames};
 
     })();
 
@@ -158,10 +161,30 @@ const gameManager = (() => {
             displayManager.clearBoard();
         });
 
-        messageDialog.querySelector("button").addEventListener('click', (event) => {
-            event.preventDefault();
-            messageDialog.close();
+        messageDialog.addEventListener('close', () => {
             resetBoard();
+        })
+
+        document.querySelector(".settings").addEventListener('click', (event) => {
+            event.preventDefault();
+            settingsDialog.showModal();
+        });
+
+        document.querySelector(".header > dialog button:nth-of-type(2)").addEventListener('click', (event) => {
+            event.preventDefault();
+            settingsDialog.close();
+        })
+
+        document.querySelector(".header form").addEventListener('submit', (event) => {
+            const formData = new FormData(event.target);
+
+            player1.setPlayerName(formData.get('player1-name'));
+            player2.setPlayerName(formData.get('player2-name'));
+
+            document.querySelector(":root").style.setProperty("--player-one-color", formData.get("player1-color"))
+            document.querySelector(":root").style.setProperty("--player-two-color", formData.get("player2-color"))
+            
+            displayManager.updatePlayerNames();
         });
     }
 

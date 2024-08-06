@@ -23,8 +23,12 @@
         </div>
         <button class="settings">Settings</button>
         <dialog>
-            <form action="" formmethod="dialog">
-
+            <form action="" method="dialog">
+                <label for="player1-name">Player1's name</label><label for="player1-color">Player1's Color</label>
+                <input type="text" id="player1-name" name="player1-name"><input type="color" id="player1-color" name="player1-color">
+                <label for="player2-name">Player2's name</label><label for="player2-color">Player2's Color</label>
+                <input type="text" id="player2-name" name="player2-name"><input type="color" id="player2-color" name="player2-color">
+                <button type="submit" class="save">Save</button><button>Close</button>
             </form>
         </dialog>
     </div>
@@ -40,9 +44,9 @@
             <div class="tile data-attribute-8"></div>
             <div class="tile data-attribute-9"></div>
         </div>
-        <p><span class="player-one">PlayerOne</span>'s turn!</p>
+        <p><span class="player-one">Player One</span>'s turn!</p>
         <dialog>
-            <form action="" formmethod="dialog">
+            <form action="" method="dialog">
             <p class="message">End of round message</p>
             <button>Ok</button>    
             </form>
