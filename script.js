@@ -124,11 +124,10 @@ const gameManager = (() => {
             displayManager.showEndOfRoundMessage('win');
             currentPlayer.incrementScore();
             displayManager.updateScore();
+        } else {
+                if (boardIsFull()) displayManager.showEndOfRoundMessage('draw');
         }
-
         switchCurrentPlayer();
-        
-        if (boardIsFull()) displayManager.showEndOfRoundMessage('draw');
     }
 
     const switchCurrentPlayer = () => {
